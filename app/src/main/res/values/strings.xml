@@ -7,9 +7,16 @@
     <string name="humidityHeaderString">Páratartalom</string>
     <string name="developerHeaderString">Fejlesztő</string>
     <string name="developerString">Vilmos Vass</string>
-    <string name="errorMessageString">Something went wrong</string>
-    <string name="locationString">Helyszín</string>
+    <string name="errorMessageString">Hiba! Kérem próbálja újra.</string>
+    <string name="locationString">Helyszín, HU</string>
     <string name="lastUpdateString">Utolsó frissítés</string>
     <string name="weatherStatusString">Felhős</string>
-    <string name="temperatureString">27C</string>
+    <string name="temperatureString">27°C</string>
+    <string name="developer">Vilmos Vass</string>
+    <string name="sunrise">Napkelte</string>
+    <string name="sunset">Napnyugta</string>
+    <string name="wind">Szélerősség</string>
+    <string name="pressure">Légnyomás</string>
+    <string name="humidity">Páratartalom</string>
+    <string name="created_by">Fejlesztette</string>
 </resources>
