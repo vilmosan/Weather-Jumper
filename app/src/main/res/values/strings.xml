@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">weatherapp</string>
+    <string name="sunriseHeaderString">Napkelte</string>
+    <string name="sunsetHeaderString">Napnyugta</string>
+    <string name="windHeaderString">Szélerősség</string>
+    <string name="pressureHeaderString">Légnyomás</string>
+    <string name="humidityHeaderString">Páratartalom</string>
+    <string name="developerHeaderString">Fejlesztő</string>
+    <string name="developerString">Vilmos Vass</string>
+    <string name="errorMessageString">Something went wrong</string>
+    <string name="locationString">Helyszín</string>
+    <string name="lastUpdateString">Utolsó frissítés</string>
+    <string name="weatherStatusString">Felhős</string>
+    <string name="temperatureString">27°C</string>
+</resources>
