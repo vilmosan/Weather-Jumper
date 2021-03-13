@@ -22,6 +22,16 @@ class MainActivity : AppCompatActivity() {
             val editTextField = findViewById(R.id.cityInputField) as EditText
 
             val cityInputtedByUser = editTextField.text.toString()
+            cityInputtedByUser.trim().toLowerCase()
+                    .replace("é","e")
+                    .replace("á","a")
+                    .replace("ő","o")
+                    .replace("ú","u")
+                    .replace("ű","u")
+                    .replace("ö","o")
+                    .replace("ü","u")
+                    .replace("ó","o")
+                    .replace("í","i")
 
             Logger.getLogger(MainActivity::class.java.name).warning("City input: " + cityInputtedByUser)
 
