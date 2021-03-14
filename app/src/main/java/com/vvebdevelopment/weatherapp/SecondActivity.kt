@@ -16,14 +16,14 @@ import java.util.logging.Logger
 class SecondActivity : AppCompatActivity() {
 
     var CITY: String = "pecs,hu"
-    val API: String = "06c921750b9a82d8f5d1294e1586276f" // Use API key
+    val API: String = "06c921750b9a82d8f5d1294e1586276f"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
         var city = intent.getStringExtra("selectedCity")
-        Logger.getLogger(SecondActivity::class.java.name).warning("Selected city: " + city)
+        //Logger.getLogger(SecondActivity::class.java.name).warning("Selected city: " + city)
 
         CITY = "$city,hu"
 
@@ -41,12 +41,12 @@ class SecondActivity : AppCompatActivity() {
         }
 
         override fun doInBackground(vararg params: String?): String? {
-            var response:String?
-            try{
+            var response: String?
+            try {
                 response = URL("https://api.openweathermap.org/data/2.5/weather?q=$CITY&units=metric&appid=$API").readText(
                         Charsets.UTF_8
                 )
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 response = null
             }
             return response
@@ -64,19 +64,19 @@ class SecondActivity : AppCompatActivity() {
                 val wind = jsonObj.getJSONObject("wind")
                 val weather = jsonObj.getJSONArray("weather").getJSONObject(0)
 
-                val updatedAt:Long = jsonObj.getLong("dt")
-                val updatedAtText = "Updated at: "+ SimpleDateFormat("yyyy.MM.dd k:mm", Locale.ENGLISH).format(Date(updatedAt*1000))
+                val updatedAt: Long = jsonObj.getLong("dt")
+                val updatedAtText = "Updated at: " + SimpleDateFormat("yyyy.MM.dd k:mm", Locale.ENGLISH).format(Date(updatedAt * 1000))
                 val temp = main.getString("temp")
                 val pressure = main.getString("pressure")
                 val humidity = main.getString("humidity")
 
-                val sunrise:Long = sys.getLong("sunrise")
-                val sunset:Long = sys.getLong("sunset")
+                val sunrise: Long = sys.getLong("sunrise")
+                val sunset: Long = sys.getLong("sunset")
                 val windSpeed = wind.getString("speed")
                 var weatherDescription = weather.getString("main")
                 //Logger.getLogger(SecondActivity::class.java.name).warning("Weather: " + weatherDescription)
 
-                val address = jsonObj.getString("name")+", "+sys.getString("country")
+                val address = jsonObj.getString("name") + ", " + sys.getString("country")
 
                 weatherDescription = when (weatherDescription) {
                     "Clear" -> "Tiszta égbolt"
@@ -94,11 +94,11 @@ class SecondActivity : AppCompatActivity() {
 
                 /* Populating extracted data into our views */
                 findViewById<TextView>(R.id.address).text = address
-                findViewById<TextView>(R.id.updated_at).text =  updatedAtText
+                findViewById<TextView>(R.id.updated_at).text = updatedAtText
                 findViewById<TextView>(R.id.status).text = weatherDescription
-                findViewById<TextView>(R.id.temp).text = temp+"°C"
-                findViewById<TextView>(R.id.sunrise).text = SimpleDateFormat("k:mm", Locale.ENGLISH).format(Date(sunrise*1000))
-                findViewById<TextView>(R.id.sunset).text = SimpleDateFormat("k:mm", Locale.ENGLISH).format(Date(sunset*1000))
+                findViewById<TextView>(R.id.temp).text = temp + "°C"
+                findViewById<TextView>(R.id.sunrise).text = SimpleDateFormat("k:mm", Locale.ENGLISH).format(Date(sunrise * 1000))
+                findViewById<TextView>(R.id.sunset).text = SimpleDateFormat("k:mm", Locale.ENGLISH).format(Date(sunset * 1000))
                 findViewById<TextView>(R.id.wind).text = windSpeed + " km/óra"
                 findViewById<TextView>(R.id.pressure).text = pressure + " Pa"
                 findViewById<TextView>(R.id.humidity).text = humidity + "%"

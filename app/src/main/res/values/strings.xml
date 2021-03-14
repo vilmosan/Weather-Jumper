@@ -20,4 +20,5 @@
     <string name="humidity">Páratartalom</string>
     <string name="created_by">Fejlesztette</string>
     <string name="versionCode">verzió 1.1</string>
+    <string name="inputFieldPlaceholder">Város</string>
 </resources>
