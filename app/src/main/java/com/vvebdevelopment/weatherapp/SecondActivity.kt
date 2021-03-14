@@ -57,6 +57,8 @@ class SecondActivity : AppCompatActivity() {
             try {
                 /* Extracting JSON returns from the API */
                 val jsonObj = JSONObject(result)
+                //Logger.getLogger(SecondActivity::class.java.name).warning("JSON: " + jsonObj)
+
                 val main = jsonObj.getJSONObject("main")
                 val sys = jsonObj.getJSONObject("sys")
                 val wind = jsonObj.getJSONObject("wind")
@@ -71,35 +73,35 @@ class SecondActivity : AppCompatActivity() {
                 val sunrise:Long = sys.getLong("sunrise")
                 val sunset:Long = sys.getLong("sunset")
                 val windSpeed = wind.getString("speed")
-                var weatherDescription = weather.getString("description")
+                var weatherDescription = weather.getString("main")
+                //Logger.getLogger(SecondActivity::class.java.name).warning("Weather: " + weatherDescription)
 
                 val address = jsonObj.getString("name")+", "+sys.getString("country")
 
                 weatherDescription = when (weatherDescription) {
-                    "clear sky" -> "tiszta égbolt"
-                    "few clouds" -> "kissé felhő"
-                    "scattered clouds" -> "szórványos felhők"
-                    "broken clouds" -> "bárányfelhők"
-                    "shower rain" -> "szakadó eső"
-                    "rain" -> "esős"
-                    "thunderstorm" -> "zivatar"
-                    "snow" -> "havas john"
-                    "mist" -> "ködös"
+                    "Clear" -> "Tiszta égbolt"
+                    "Clouds" -> "Felhős"
+                    "Rain" -> "Esős"
+                    "Drizzle" -> "Csepereg"
+                    "Thunderstorm" -> "Zivatar"
+                    "Snow" -> "Havas John"
+                    "Mist" -> "Ködös"
+                    "Fog" -> "Ködös"
                     else -> {
-                        "meteorzápor"
+                        "Meteorzápor"
                     }
                 }
 
                 /* Populating extracted data into our views */
                 findViewById<TextView>(R.id.address).text = address
                 findViewById<TextView>(R.id.updated_at).text =  updatedAtText
-                findViewById<TextView>(R.id.status).text = weatherDescription.capitalize()
+                findViewById<TextView>(R.id.status).text = weatherDescription
                 findViewById<TextView>(R.id.temp).text = temp+"°C"
                 findViewById<TextView>(R.id.sunrise).text = SimpleDateFormat("k:mm", Locale.ENGLISH).format(Date(sunrise*1000))
                 findViewById<TextView>(R.id.sunset).text = SimpleDateFormat("k:mm", Locale.ENGLISH).format(Date(sunset*1000))
-                findViewById<TextView>(R.id.wind).text = windSpeed
-                findViewById<TextView>(R.id.pressure).text = pressure
-                findViewById<TextView>(R.id.humidity).text = humidity
+                findViewById<TextView>(R.id.wind).text = windSpeed + " km/óra"
+                findViewById<TextView>(R.id.pressure).text = pressure + " Pa"
+                findViewById<TextView>(R.id.humidity).text = humidity + "%"
 
                 /* Views populated, Hiding the loader, Showing the main design */
                 findViewById<ProgressBar>(R.id.loader).visibility = View.GONE
