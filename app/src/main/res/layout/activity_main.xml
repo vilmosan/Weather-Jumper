@@ -359,16 +359,7 @@
         android:layout_height="wrap_content">
 
     </ProgressBar>
-    <TextView
-        android:id="@+id/errortext"
-        android:layout_centerInParent="true"
-        android:text="@string/errorMessageString"
-        android:textSize="24sp"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-    </TextView>
 
 </RelativeLayout>
 
