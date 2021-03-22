@@ -1,8 +1,10 @@
 package com.vvebdevelopment.weatherapp
 
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -21,6 +23,12 @@ class ThirdActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_third)
 
+        val exitButton = findViewById<Button>(R.id.exitButton)
+        exitButton.setOnClickListener {
+            finish();
+            System.exit(0);
+        }
+
         var city = intent.getStringExtra("selectedCity")
         //Logger.getLogger(SecondActivity::class.java.name).warning("Selected city: " + city)
 
@@ -30,7 +38,7 @@ class ThirdActivity : AppCompatActivity() {
 
     }
 
-    inner class weatherTask() : AsyncTask<String, Void, String>() {
+    inner class weatherTask : AsyncTask<String, Void, String>() {
         override fun onPreExecute() {
             super.onPreExecute()
             /* Showing the ProgressBar, Making the main design GONE */
@@ -42,9 +50,10 @@ class ThirdActivity : AppCompatActivity() {
         override fun doInBackground(vararg params: String?): String? {
             var response: String?
             try {
-                response = URL("https://api.openweathermap.org/data/2.5/weather?q=$CITY&units=metric&appid=$API").readText(
-                    Charsets.UTF_8
-                )
+                response =
+                    URL("https://api.openweathermap.org/data/2.5/weather?q=$CITY&units=metric&appid=$API").readText(
+                        Charsets.UTF_8
+                    )
             } catch (e: Exception) {
                 response = null
             }
@@ -64,7 +73,10 @@ class ThirdActivity : AppCompatActivity() {
                 val weather = jsonObj.getJSONArray("weather").getJSONObject(0)
 
                 val updatedAt: Long = jsonObj.getLong("dt")
-                val updatedAtText = "Updated at: " + SimpleDateFormat("yyyy.MM.dd k:mm", Locale.ENGLISH).format(Date(updatedAt * 1000))
+                val updatedAtText = "Updated at: " + SimpleDateFormat(
+                    "yyyy.MM.dd k:mm",
+                    Locale.ENGLISH
+                ).format(Date(updatedAt * 1000))
                 val temp = main.getString("temp")
                 val pressure = main.getString("pressure")
                 val humidity = main.getString("humidity")
@@ -96,8 +108,10 @@ class ThirdActivity : AppCompatActivity() {
                 findViewById<TextView>(R.id.updated_at).text = updatedAtText
                 findViewById<TextView>(R.id.status).text = weatherDescription
                 findViewById<TextView>(R.id.temp).text = temp + "°C"
-                findViewById<TextView>(R.id.sunrise).text = SimpleDateFormat("k:mm", Locale.ENGLISH).format(Date(sunrise * 1000))
-                findViewById<TextView>(R.id.sunset).text = SimpleDateFormat("k:mm", Locale.ENGLISH).format(Date(sunset * 1000))
+                findViewById<TextView>(R.id.sunrise).text =
+                    SimpleDateFormat("k:mm", Locale.ENGLISH).format(Date(sunrise * 1000))
+                findViewById<TextView>(R.id.sunset).text =
+                    SimpleDateFormat("k:mm", Locale.ENGLISH).format(Date(sunset * 1000))
                 findViewById<TextView>(R.id.wind).text = windSpeed + " km/óra"
                 findViewById<TextView>(R.id.pressure).text = pressure + " Pa"
                 findViewById<TextView>(R.id.humidity).text = humidity + "%"

@@ -6,7 +6,7 @@ class CityRepository(private val cityDao: CityDao) {
 
     val readAllData: LiveData<List<City>> = cityDao.readAllData()
 
-    suspend fun addCity(city: City){
+    suspend fun addCity(city: City) {
         cityDao.addCity(city)
     }
 }

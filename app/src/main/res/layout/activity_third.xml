@@ -60,6 +60,12 @@
                 android:text="29°C"
                 android:textSize="90dp" />
 
+            <Button
+                android:id="@+id/exitButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kilépés" />
+
         </LinearLayout>
 
 
@@ -302,6 +308,7 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
     </RelativeLayout>
 
     <ProgressBar

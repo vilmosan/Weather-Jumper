@@ -24,35 +24,34 @@ class addFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_add, container, false)
+        val view = inflater.inflate(R.layout.fragment_add, container, false)
 
         mCityViewModel = ViewModelProvider(this).get(CityViewModel::class.java)
 
-        view.add_btn.setOnClickListener{
+        view.add_btn.setOnClickListener {
             insertDatatoDatabase()
         }
 
         return view
     }
 
-    private fun insertDatatoDatabase(){
+    private fun insertDatatoDatabase() {
         val region = addRegion_et.text.toString()
         val cityName = addCity_et.text.toString()
 
-        if(inputCheck(region, cityName)){
+        if (inputCheck(region, cityName)) {
             val city = City(0, region, cityName)
 
             mCityViewModel.addCity(city)
             Toast.makeText(requireContext(), "Sikeres hozzáadás!", Toast.LENGTH_LONG).show()
 
             findNavController().navigate(R.id.action_addFragment_to_listFragment)
-        }
-        else{
+        } else {
             Toast.makeText(requireContext(), "Hiányos beviteli adatok!", Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun inputCheck(region: String, cityName: String) : Boolean{
+    private fun inputCheck(region: String, cityName: String): Boolean {
         return !(TextUtils.isEmpty(region) && TextUtils.isEmpty(cityName))
     }
 }

@@ -1,12 +1,9 @@
 package com.vvebdevelopment.weatherapp.fragments.list
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,7 +14,7 @@ import com.vvebdevelopment.weatherapp.R
 import com.vvebdevelopment.weatherapp.data.CityViewModel
 import kotlinx.android.synthetic.main.fragment_list.view.*
 
-class ListFragment : Fragment(){
+class ListFragment : Fragment() {
 
     private lateinit var mCityViewModel: CityViewModel
 
@@ -38,7 +35,7 @@ class ListFragment : Fragment(){
             adapter.setData(city)
         })
 
-        view.floatingActionButton.setOnClickListener{
+        view.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_listFragment_to_addFragment)
         }
         return view

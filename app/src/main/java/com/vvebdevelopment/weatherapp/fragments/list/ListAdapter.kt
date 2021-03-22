@@ -8,14 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vvebdevelopment.weatherapp.R
 import com.vvebdevelopment.weatherapp.data.City
 
-class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
+class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     private var cityList = emptyList<City>()
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.custom_row, parent, false))
+        return MyViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.custom_row, parent, false)
+        )
     }
 
     override fun getItemCount(): Int {
@@ -31,7 +33,7 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     }
 
-    fun setData(city: List<City>){
+    fun setData(city: List<City>) {
         this.cityList = city
         notifyDataSetChanged()
     }
