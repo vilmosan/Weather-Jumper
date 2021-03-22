@@ -19,7 +19,7 @@ class ThirdActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_second)
+        setContentView(R.layout.activity_third)
 
         var city = intent.getStringExtra("selectedCity")
         //Logger.getLogger(SecondActivity::class.java.name).warning("Selected city: " + city)
