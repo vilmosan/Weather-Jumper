@@ -14,12 +14,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vvebdevelopment.weatherapp.R
-import com.vvebdevelopment.weatherapp.data.UserViewModel
+import com.vvebdevelopment.weatherapp.data.CityViewModel
 import kotlinx.android.synthetic.main.fragment_list.view.*
 
 class ListFragment : Fragment(){
 
-    private lateinit var mUserViewModel: UserViewModel
+    private lateinit var mCityViewModel: CityViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,9 +33,9 @@ class ListFragment : Fragment(){
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        mUserViewModel.readAllData.observe(viewLifecycleOwner, Observer { user ->
-            adapter.setData(user)
+        mCityViewModel = ViewModelProvider(this).get(CityViewModel::class.java)
+        mCityViewModel.readAllData.observe(viewLifecycleOwner, Observer { city ->
+            adapter.setData(city)
         })
 
         view.floatingActionButton.setOnClickListener{

@@ -6,12 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.vvebdevelopment.weatherapp.R
-import com.vvebdevelopment.weatherapp.data.User
-import kotlinx.android.synthetic.main.custom_row.view.*
+import com.vvebdevelopment.weatherapp.data.City
 
 class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
-    private var userList = emptyList<User>()
+    private var cityList = emptyList<City>()
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
@@ -20,21 +19,20 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return userList.size
+        return cityList.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = userList[position]
+        val currentItem = cityList[position]
 
         holder.itemView.findViewById<TextView>(R.id.id_txt).text = currentItem.id.toString()
-        holder.itemView.findViewById<TextView>(R.id.firstName_txt).text = currentItem.firstName
-        holder.itemView.findViewById<TextView>(R.id.lastName_txt).text = currentItem.lastName
-        holder.itemView.findViewById<TextView>(R.id.age_txt).text = currentItem.age.toString()
+        holder.itemView.findViewById<TextView>(R.id.region_txt).text = currentItem.region
+        holder.itemView.findViewById<TextView>(R.id.city_txt).text = currentItem.city
 
     }
 
-    fun setData(user: List<User>){
-        this.userList = user
+    fun setData(city: List<City>){
+        this.cityList = city
         notifyDataSetChanged()
     }
 }

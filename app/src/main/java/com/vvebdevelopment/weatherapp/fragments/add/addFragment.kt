@@ -1,7 +1,6 @@
 package com.vvebdevelopment.weatherapp.fragments.add
 
 import android.os.Bundle
-import android.text.Editable
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.vvebdevelopment.weatherapp.R
-import com.vvebdevelopment.weatherapp.data.User
-import com.vvebdevelopment.weatherapp.data.UserViewModel
+import com.vvebdevelopment.weatherapp.data.City
+import com.vvebdevelopment.weatherapp.data.CityViewModel
 import kotlinx.android.synthetic.main.fragment_add.*
 import kotlinx.android.synthetic.main.fragment_add.view.*
 
 class addFragment : Fragment() {
 
-    private lateinit var mUserViewModel: UserViewModel
+    private lateinit var mCityViewModel: CityViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +26,7 @@ class addFragment : Fragment() {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_add, container, false)
 
-        mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        mCityViewModel = ViewModelProvider(this).get(CityViewModel::class.java)
 
         view.add_btn.setOnClickListener{
             insertDatatoDatabase()
@@ -37,14 +36,13 @@ class addFragment : Fragment() {
     }
 
     private fun insertDatatoDatabase(){
-        val firstName = addFirstName_et.text.toString()
-        val lastName = addLastName_et.text.toString()
-        val age = addAge_et.text
+        val region = addRegion_et.text.toString()
+        val cityName = addCity_et.text.toString()
 
-        if(inputCheck(firstName, lastName, age)){
-            val user = User(0, firstName, lastName, Integer.parseInt(age.toString()))
+        if(inputCheck(region, cityName)){
+            val city = City(0, region, cityName)
 
-            mUserViewModel.addUser(user)
+            mCityViewModel.addCity(city)
             Toast.makeText(requireContext(), "Sikeres hozzáadás!", Toast.LENGTH_LONG).show()
 
             findNavController().navigate(R.id.action_addFragment_to_listFragment)
@@ -54,7 +52,7 @@ class addFragment : Fragment() {
         }
     }
 
-    private fun inputCheck(firstName: String, lastName: String, age: Editable) : Boolean{
-        return !(TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && age.isEmpty())
+    private fun inputCheck(region: String, cityName: String) : Boolean{
+        return !(TextUtils.isEmpty(region) && TextUtils.isEmpty(cityName))
     }
 }

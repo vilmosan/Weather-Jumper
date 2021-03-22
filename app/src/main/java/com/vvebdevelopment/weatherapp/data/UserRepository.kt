@@ -2,11 +2,11 @@ package com.vvebdevelopment.weatherapp.data
 
 import androidx.lifecycle.LiveData
 
-class UserRepository(private val userDao: UserDao) {
+class CityRepository(private val cityDao: CityDao) {
 
-    val readAllData: LiveData<List<User>> = userDao.readAllData()
+    val readAllData: LiveData<List<City>> = cityDao.readAllData()
 
-    suspend fun addUser(user: User){
-        userDao.addUser(user)
+    suspend fun addCity(city: City){
+        cityDao.addCity(city)
     }
 }
