@@ -26,12 +26,12 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.nextPageButton)
         button.setOnClickListener {
-            val intent = Intent(this@MainActivity, ThirdActivity::class.java)
+            val intent = Intent(this@MainActivity, SecondActivity::class.java)
 
             val editTextField = findViewById(R.id.cityInputField) as EditText
 
-            var cityInputtedByUser = editTextField.text.toString()
-            cityInputtedByUser = cityInputtedByUser.trim().toLowerCase()
+            var cityInputtedByCity = editTextField.text.toString()
+            cityInputtedByCity = cityInputtedByCity.trim().toLowerCase()
                 .replace("é","e")
                 .replace("á","a")
                 .replace("ő","o")
@@ -50,9 +50,9 @@ class MainActivity : AppCompatActivity() {
                 .replace("å","a")
                 .replace("ã","a")
 
-            //Logger.getLogger(SecondActivity::class.java.name).warning("City input: " + cityInputtedByUser)
+            //Logger.getLogger(SecondActivity::class.java.name).warning("City input: " + cityInputtedByCity)
 
-            intent.putExtra("selectedCity", cityInputtedByUser)
+            intent.putExtra("selectedCity", cityInputtedByCity)
 
             startActivity(intent);
 
