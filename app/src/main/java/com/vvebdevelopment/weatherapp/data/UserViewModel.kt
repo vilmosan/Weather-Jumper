@@ -9,8 +9,8 @@ import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application): AndroidViewModel(application){
 
-    private val readAllData: LiveData<List<User>>
-    private val repository: UserRepository
+    val readAllData: LiveData<List<User>>
+    val repository: UserRepository
 
     init{
         val userDao = UserDatabase.getDatabase(application).userDao()
