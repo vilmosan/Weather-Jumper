@@ -12,6 +12,8 @@
     <string name="lastUpdateString">Utolsó frissítés</string>
     <string name="weatherStatusString">Felhős</string>
     <string name="temperatureString">27°C</string>
-    <string name="versionCode">verzió 1.1</string>
-    <string name="inputFieldPlaceholder">Város</string>
+    <string name="versionCode">verzió 1.2</string>
+    <string name="inputFieldPlaceholder">Magyarországi város</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
